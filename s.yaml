@@ -1,0 +1,26 @@
+edition: 3.0.0
+name: Zip OSS
+access: 'undefined'
+
+resources:
+  fc-zip-oss-service:
+    component: fc3
+    props:
+      region: 'cn-shanghai'
+      handler: main.main_handler
+      timeout: 1800
+      runtime: python3.9
+      memorySize: 3072
+      role: 'acs:ram::1607335174627855:role/aliyunfcdefaultrole'
+      internetAccess: true
+      functionName: 'zip-oss-func-pvhg'
+      code: ./code
+      triggers:
+        - triggerName: http-test
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
